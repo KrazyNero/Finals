@@ -158,7 +158,6 @@
       background-color: #5483B3;
       color: #000;
     }
-
     .gender-btn input[type="radio"] {
       display: none;
     }
@@ -167,8 +166,30 @@
       background-color: #C1E8FF;
       color: #021024;
     }
-
-    /* Hide Step 2 by default */
     #step2 {
       display: none;
+    }
+    .checkbox-agreement {
+      background-color: #021024;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #C1E8FF;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .checkbox-agreement input[type="checkbox"] {
+      margin-right: 8px;
+      transform: scale(1.2);
+      accent-color: #C1E8FF;
+    }
+
+    .checkbox-agreement a {
+      color: #C1E8FF;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
+    .checkbox-agreement a:hover {
+      color: #5483B3;
     }
