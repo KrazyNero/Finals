@@ -4,41 +4,79 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SONA</title>
-  <link rel="stylesheet" href="main.css" />
+  <link rel="stylesheet" href="mainpage.css" />
 </head>
 <body>
-  <header>
-    <div class="logo"><a href="mainpage.html"><img src="sona-logo.png" alt="logo"></div></a>
-    <form id="search-form" class="search-bar">
-      <input type="search" id="search-input" placeholder="Search for artists, songs, or albums..." required/>
-      <button type="submit">Search</button>
-      <div class="search-results" id="search-results"></div>
-    </form>
-    <nav>
-      <a href="#featured">Featured</a>
-      <a href="#browse">Browse</a>
-
-      <div class="user-profile" id="userProfile">
-        <div class="user-avatar">
-            <img src="Profile-PNG-Photo.png" alt="User Avatar" style="width:100%; height:100%; border-radius:50%; object-fit:cover;" />
-        </div>
-
-        <div class="user-name">User</div>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <a href="mainpage.html"><img src="sona-logo.png" alt="SONA Logo"></a>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-section">
+        <a href="mainpage.html" class="active">
+          🏠 Home
+        </a>
+        <a href="#">
+          🔍 Search
+        </a>
       </div>
-      <div class="dropdown-menu" id="userDropdown">
-        <a href="#" role="menuitem">Profile</a>
-        <a href="#" role="menuitem">Settings</a>
-        <a href="#" role="menuitem">Logout</a>
+      
+      <div class="sidebar-section">
+        <h3>Your Library</h3>
+        <a href="#">📚 Your Library</a>
+        <a href="#">❤️ Liked Songs</a>
+        <div class="add-playlist">➕ Create Playlist
+        </div>
+      </div>
+    
+      <div class="sidebar-section">
+        <h3>Categories</h3>
+        <a href="#top-hits">🔥 Top Hits</a>
+        <a href="#chill-vibes">😌 Chill Vibes</a>
+        <a href="#opm">🇵🇭 OPM</a>
       </div>
     </nav>
-  </header>
+  </aside>
+
+  <div class="main-content">
+    <header>
+      <div class="burger-menu" id="burgerMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <form id="search-form" class="search-bar">
+        <input type="search" id="search-input" placeholder="Search for artists, songs, or albums..." required/>
+        <button type="submit">Search</button>
+        <div class="search-results" id="search-results"></div>
+      </form>
+      <nav>
+        <a href="#featured">Featured</a>
+        <a href="#browse">Browse</a>
+
+        <div class="user-profile" id="userProfile">
+          <div class="user-avatar">
+              <img src="Profile-PNG-Photo.png" alt="User Avatar" style="width:100%; height:100%; border-radius:50%; object-fit:cover;" />
+          </div>
+
+          <div class="user-name">User</div>
+        </div>
+        <div class="dropdown-menu" id="userDropdown">
+          <a href="#" role="menuitem">Profile</a>
+          <a href="#" role="menuitem">Settings</a>
+          <a href="#" role="menuitem">Logout</a>
+        </div>
+      </nav>
+    </header>
 
   <section class="hero">
     <h1>What masterpiece shall we play today?</h1>
     <p>Listen to millions of songs and discover new favorites on SONA.</p>
   </section>
 
-  <section class="featured-section" id="featured">
+  <section class="featured-section" id="featured" id="top-hits">
 
     <div class="category">
       <h2>Top Hits</h2>
@@ -96,7 +134,7 @@
       </div>
     </div>
 
-    <div class="category" aria-label="Chill Vibes Category">
+    <div class="category" id="chill-vibes" aria-label="Chill Vibes Category">
       <h2>Chill Vibes</h2>
       <div class="cards-row">
         <article class="card">
@@ -152,7 +190,7 @@
       </div>
     </div>
 
-    <div class="category" aria-label="Indie Category">
+    <div class="category" id="opm" aria-label="OPM Category">
       <h2>OPM</h2>
       <div class="cards-row">
         <article class="card">
@@ -209,10 +247,62 @@
     </div>
 
   </section>
-
-  <footer>
-    <p>&copy; 2025 SONA. All rights reserved.</p>
-  </footer>
+  </div>
+  <div class="music-player active" id="musicPlayer">
+    <div class="now-playing">
+      <img id="currentSongImg" src="pink+white.jpg" alt="Album Cover">
+      <div class="song-info">
+        <div id="currentSongTitle" class="song-title">Pink + White</div>
+        <div id="currentSongArtist" class="song-artist">Frank Ocean</div>
+      </div>
+    </div>
+    <div class="player-controls">
+      <div class="progress-container">
+        <div class="progress-bar">
+          <div class="progress" id="progress" style="width: 45%"></div>
+        </div>
+        <div class="time-info">
+          <span id="currentTime">1:35</span>
+          <span id="totalTime">3:30</span>
+        </div>
+      </div>
+      <div class="control-buttons">
+        <button class="control-btn" id="prevBtn">⏮</button>
+        <button class="control-btn play-pause" id="playPauseBtn">⏸</button>
+        <button class="control-btn" id="nextBtn">⏭</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    const burgerMenu = document.getElementById('burgerMenu');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+    
+    burgerMenu.addEventListener('click', function() {
+      burgerMenu.classList.toggle('open');
+      sidebar.classList.toggle('open');
+      sidebarOverlay.classList.toggle('show');
+    });
+    
+    sidebarOverlay.addEventListener('click', function() {
+      burgerMenu.classList.remove('open');
+      sidebar.classList.remove('open');
+      sidebarOverlay.classList.remove('show');
+    });
+    
+    const userProfile = document.getElementById('userProfile');
+    const userDropdown = document.getElementById('userDropdown');
+    
+    userProfile.addEventListener('click', function() {
+      userDropdown.classList.toggle('show');
+    });
+    
+    document.addEventListener('click', function(event) {
+      if (!userProfile.contains(event.target)) {
+        userDropdown.classList.remove('show');
+      }
+    });
+  </script>
 </body>
 </html>
 
