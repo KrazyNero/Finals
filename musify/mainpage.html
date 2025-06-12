@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SONA</title>
-  <link rel="stylesheet" href="mainpage.css"/>
+  <link rel="stylesheet" href="main.css" />
 </head>
 <body>
   <div class="sidebar-overlay" id="sidebarOverlay"></div>
@@ -15,22 +15,15 @@
     </div>
     <nav class="sidebar-nav">
       <div class="sidebar-section">
-        <a href="mainpage.html" class="active">
-          🏠 Home
-        </a>
-        <a href="#">
-          🔍 Search
-        </a>
+        <a href="mainpage.html" class="active">🏠 Home</a>
       </div>
-      
       <div class="sidebar-section">
         <h3>Your Library</h3>
-        <a href="#">📚 Your Library</a>
-        <a href="#">❤️ Liked Songs</a>
-        <div class="add-playlist">➕ Create Playlist
-        </div>
+        <a href="mainpage.html">📚 Your Library</a>
+        <a href="profile.html#liked-tab">❤️ Liked Songs</a>
+        <div class="add-playlist" id="createPlaylistBtn">➕ Create Playlist</div>
+        <div id="playlists-container"></div>
       </div>
-    
       <div class="sidebar-section">
         <h3>Categories</h3>
         <a href="#top-hits">🔥 Top Hits</a>
@@ -53,9 +46,6 @@
         <div class="search-results" id="search-results"></div>
       </form>
       <nav>
-        <a href="#featured">Featured</a>
-        <a href="#browse">Browse</a>
-
         <div class="user-profile" id="userProfile">
           <div class="user-avatar">
               <img src="Profile-PNG-Photo.png" alt="User Avatar" style="width:100%; height:100%; border-radius:50%; object-fit:cover;" />
@@ -64,7 +54,7 @@
           <div class="user-name">User</div>
         </div>
         <div class="dropdown-menu" id="userDropdown">
-          <a href="#" role="menuitem">Profile</a>
+          <a href="profile.html" role="menuitem">Profile</a>
           <a href="#" role="menuitem">Settings</a>
           <a href="login.html" role="menuitem">Logout</a>
         </div>
@@ -78,7 +68,7 @@
 
   <section class="featured-section" id="featured" id="top-hits">
 
-    <div class="category" id="top-hits">
+    <div class="category">
       <h2>Top Hits</h2>
       <div class="cards-row">
         <article class="card">
@@ -249,7 +239,7 @@
   </section>
   </div>
   <div class="music-player active" id="musicPlayer">
-    <div class="now-playing">
+    <div class="now-playing" id="nowPlayingBar">
       <img id="currentSongImg" src="pink+white.jpg" alt="Album Cover">
       <div class="song-info">
         <div id="currentSongTitle" class="song-title">Pink + White</div>
@@ -267,42 +257,58 @@
         </div>
       </div>
       <div class="control-buttons">
+        <button class="control-btn" id="likeButton">🤍</button>
         <button class="control-btn" id="prevBtn">⏮</button>
         <button class="control-btn play-pause" id="playPauseBtn">⏸</button>
         <button class="control-btn" id="nextBtn">⏭</button>
+        <div class="volume-control">
+          <button class="volume-icon" id="volumeIcon">🔊</button>
+          <div class="volume-slider-container">
+            <input type="range" min="0" max="100" value="80" class="volume-slider" id="volumeSlider">
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <script>
-    const burgerMenu = document.getElementById('burgerMenu');
-    const sidebar = document.getElementById('sidebar');
-    const sidebarOverlay = document.getElementById('sidebarOverlay');
-    
-    burgerMenu.addEventListener('click', function() {
-      burgerMenu.classList.toggle('open');
-      sidebar.classList.toggle('open');
-      sidebarOverlay.classList.toggle('show');
-    });
-    
-    sidebarOverlay.addEventListener('click', function() {
-      burgerMenu.classList.remove('open');
-      sidebar.classList.remove('open');
-      sidebarOverlay.classList.remove('show');
-    });
-    
-    const userProfile = document.getElementById('userProfile');
-    const userDropdown = document.getElementById('userDropdown');
-    
-    userProfile.addEventListener('click', function() {
-      userDropdown.classList.toggle('show');
-    });
-    
-    document.addEventListener('click', function(event) {
-      if (!userProfile.contains(event.target)) {
-        userDropdown.classList.remove('show');
-      }
-    });
-  </script>
+  
+  <div class="expanded-player" id="expandedPlayer">
+    <div class="expanded-player-header">
+      <button class="close-expanded-player" id="closeExpandedPlayer">↓</button>
+      <div class="expanded-player-title">Now Playing</div>
+      <div class="expanded-player-options">⋮</div>
+    </div>
+    <div class="expanded-player-content">
+      <div class="expanded-album-art">
+        <img id="expandedSongImg" src="pink+white.jpg" alt="Album Cover">
+      </div>
+      <div class="expanded-song-info">
+        <div id="expandedSongTitle" class="expanded-song-title">Pink + White</div>
+        <div id="expandedSongArtist" class="expanded-song-artist">Frank Ocean</div>
+        <button class="expanded-like-button" id="expandedLikeButton">🤍</button>
+      </div>
+      <div class="expanded-progress-container">
+        <div class="expanded-progress-bar">
+          <div class="expanded-progress" id="expandedProgress" style="width: 45%"></div>
+        </div>
+        <div class="expanded-time-info">
+          <span id="expandedCurrentTime">1:35</span>
+          <span id="expandedTotalTime">3:30</span>
+        </div>
+      </div>
+      <div class="expanded-control-buttons">
+        <button class="expanded-control-btn" id="expandedLikeButton">🤍</button>
+        <button class="expanded-control-btn" id="expandedShuffleBtn">🔀</button>
+        <button class="expanded-control-btn" id="expandedPrevBtn">⏮</button>
+        <button class="expanded-control-btn expanded-play-pause" id="expandedPlayPauseBtn">⏸</button>
+        <button class="expanded-control-btn" id="expandedNextBtn">⏭</button>
+        <button class="expanded-control-btn" id="expandedRepeatBtn">🔁</button>
+        <button class="expanded-control-btn" id="expandedVolumeIcon">🔊</button>
+      </div>
+      <div class="expanded-volume-slider-container">
+        <input type="range" min="0" max="100" value="80" class="expanded-volume-slider" id="expandedVolumeSlider">
+      </div>
+    </div>
+  </div>
+  <script src="main.js"></script>
 </body>
 </html>
-
