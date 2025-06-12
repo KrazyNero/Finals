@@ -1,4 +1,4 @@
-    .profile-container {
+.profile-container {
       max-width: 1000px;
       margin: 0 auto;
       padding: 30px 20px;
@@ -40,7 +40,6 @@
     .stat span {
       color: var(--text-color);
       font-weight: bold;
-    }
     .edit-profile {
       background-color: transparent;
       border: 1px solid var(--text-color);
