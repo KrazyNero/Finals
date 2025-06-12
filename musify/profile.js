@@ -31,15 +31,36 @@ const burgerMenu = document.getElementById('burgerMenu');
     const tabs = document.querySelectorAll('.profile-tab');
     const tabContents = document.querySelectorAll('.tab-content');
     
+    function showTab(tabId) {
+      tabs.forEach(t => t.classList.remove('active'));
+      tabContents.forEach(c => c.classList.remove('active'));
+      
+      const selectedTab = document.querySelector(`.profile-tab[data-tab="${tabId}"]`);
+      if (selectedTab) {
+        selectedTab.classList.add('active');
+      }
+      
+      const selectedContent = document.getElementById(`${tabId}-tab`);
+      if (selectedContent) {
+        selectedContent.classList.add('active');
+      }
+    }
+    
+    function showLikedTab() {
+      showTab('liked');
+    }
+
+    window.addEventListener('load', function() {
+      if (window.location.hash) {
+        const tabId = window.location.hash.substring(1).replace('-tab', '');
+        showTab(tabId);
+      }
+    });
+
     tabs.forEach(tab => {
       tab.addEventListener('click', function() {
         const tabId = this.getAttribute('data-tab');
-        
-        tabs.forEach(t => t.classList.remove('active'));
-        tabContents.forEach(c => c.classList.remove('active'));
-        
-        this.classList.add('active');
-        document.getElementById(`${tabId}-tab`).classList.add('active');
+        showTab(tabId);
       });
     });
 
