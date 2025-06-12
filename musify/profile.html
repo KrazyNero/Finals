@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Profile - SONA</title>
+  <link rel="stylesheet" href="profile.css" />
+</head>
+<body>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <a href="mainpage.html"><img src="sona-logo.png" alt="SONA Logo"></a>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-section">
+        <a href="mainpage.html">🏠 Home</a>
+      </div>
+      <div class="sidebar-section">
+        <h3>Your Library</h3>
+        <a href="mainpage.html">📚 Your Library</a>
+        <a href="#liked-tab" onclick="showLikedTab()">❤️ Liked Songs</a>
+        <div class="add-playlist" id="createPlaylistBtn">➕ Create Playlist</div>
+        <div id="playlists-container"></div>
+      </div>
+      <div class="sidebar-section">
+        <h3>Categories</h3>
+        <a href="#top-hits">🔥 Top Hits</a>
+        <a href="#chill-vibes">😌 Chill Vibes</a>
+        <a href="#opm">🇵🇭 OPM</a>
+      </div>
+    </nav>
+  </aside>
+
+  <div class="main-content">
+    <header>
+      <div class="burger-menu" id="burgerMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <form id="search-form" class="search-bar">
+        <input type="search" id="search-input" placeholder="Search for artists, songs, or albums..." required/>
+        <button type="submit">Search</button>
+        <div class="search-results" id="search-results"></div>
+      </form>
+      <nav>
+        <div class="user-profile active" id="userProfile">
+          <div class="user-avatar">
+            <img src="Profile-PNG-Photo.png" alt="User Avatar" style="width:100%; height:100%; border-radius:50%; object-fit:cover;" />
+          </div>
+          <div class="user-name">User</div>
+        </div>
+        <div class="dropdown-menu" id="userDropdown">
+          <a href="profile.html" role="menuitem">Profile</a>
+          <a href="#" role="menuitem">Settings</a>
+          <a href="login.html" role="menuitem">Logout</a>
+        </div>
+      </nav>
+    </header>
+
+    <div class="profile-container">
+      <div class="profile-header">
+        <div class="profile-avatar">
+          <img src="Profile-PNG-Photo.png" alt="User Profile">
+        </div>
+        <div class="profile-info">
+          <h1 class="profile-name">User</h1>
+          <div class="profile-stats">
+            <div class="stat">Playlists: <span>8</span></div>
+            <div class="stat">Followers: <span>24</span></div>
+            <div class="stat">Following: <span>36</span></div>
+          </div>
+          <button class="edit-profile">Edit Profile</button>
+        </div>
+      </div>
+      
+      <div class="profile-tabs">
+        <div class="profile-tab active" data-tab="playlists">Playlists</div>
+        <div class="profile-tab" data-tab="recent">Recently Played</div>
+        <div class="profile-tab" data-tab="liked">Liked Songs</div>
+      </div>
+      
+      <div class="tab-content active" id="playlists-tab">
+        <div class="playlists-grid">
+          <div class="playlist-card">
+            <img src="pink+white.jpg" alt="Playlist" class="playlist-img">
+            <div class="playlist-info">
+              <div class="playlist-title">My Favorites</div>
+              <div class="playlist-songs">24 songs</div>
+            </div>
+          </div>
+          <div class="playlist-card">
+            <img src="espresso.jpg" alt="Playlist" class="playlist-img">
+            <div class="playlist-info">
+              <div class="playlist-title">Workout Mix</div>
+              <div class="playlist-songs">18 songs</div>
+            </div>
+          </div>
+          <div class="playlist-card">
+            <img src="saturn.webp" alt="Playlist" class="playlist-img">
+            <div class="playlist-info">
+              <div class="playlist-title">Chill Vibes</div>
+              <div class="playlist-songs">32 songs</div>
+            </div>
+          </div>
+          <div class="playlist-card">
+            <img src="losecontrol.jpg" alt="Playlist" class="playlist-img">
+            <div class="playlist-info">
+              <div class="playlist-title">Road Trip</div>
+              <div class="playlist-songs">45 songs</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="tab-content" id="recent-tab">
+        <div class="recent-activity">
+          <div class="activity-item">
+            <img src="pink+white.jpg" alt="Song" class="activity-img">
+            <div class="activity-info">
+              <div class="activity-title">Pink + White</div>
+              <div class="activity-artist">Frank Ocean</div>
+            </div>
+            <div class="activity-time">2 hours ago</div>
+          </div>
+          <div class="activity-item">
+            <img src="espresso.jpg" alt="Song" class="activity-img">
+            <div class="activity-info">
+              <div class="activity-title">Espresso</div>
+              <div class="activity-artist">Sabrina Carpenter</div>
+            </div>
+            <div class="activity-time">Yesterday</div>
+          </div>
+          <div class="activity-item">
+            <img src="saturn.webp" alt="Song" class="activity-img">
+            <div class="activity-info">
+              <div class="activity-title">Saturn</div>
+              <div class="activity-artist">SZA</div>
+            </div>
+            <div class="activity-time">Yesterday</div>
+          </div>
+          <div class="activity-item">
+            <img src="losecontrol.jpg" alt="Song" class="activity-img">
+            <div class="activity-info">
+              <div class="activity-title">Lose Control</div>
+              <div class="activity-artist">Teddy Swims</div>
+            </div>
+            <div class="activity-time">2 days ago</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="tab-content" id="liked-tab">
+        <div class="recent-activity">
+          <div class="activity-item">
+            <img src="pink+white.jpg" alt="Song" class="activity-img">
+            <div class="activity-info">
+              <div class="activity-title">Pink + White</div>
+              <div class="activity-artist">Frank Ocean</div>
+            </div>
+            <div class="activity-time">❤️</div>
+          </div>
+          <div class="activity-item">
+            <img src="saturn.webp" alt="Song" class="activity-img">
+            <div class="activity-info">
+              <div class="activity-title">Saturn</div>
+              <div class="activity-artist">SZA</div>
+            </div>
+            <div class="activity-time">❤️</div>
+          </div>
+          <div class="activity-item">
+            <img src="beautifulthings.webp" alt="Song" class="activity-img">
+            <div class="activity-info">
+              <div class="activity-title">Beautiful Things</div>
+              <div class="activity-artist">Benson Boone</div>
+            </div>
+            <div class="activity-time">❤️</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="music-player active" id="musicPlayer">
+    <div class="now-playing" id="nowPlayingBar">
+      <img id="currentSongImg" src="pink+white.jpg" alt="Album Cover">
+      <div class="song-info">
+        <div id="currentSongTitle" class="song-title">Pink + White</div>
+        <div id="currentSongArtist" class="song-artist">Frank Ocean</div>
+      </div>
+    </div>
+    <div class="player-controls">
+      <div class="progress-container">
+        <div class="progress-bar">
+          <div class="progress" id="progress" style="width: 45%"></div>
+        </div>
+        <div class="time-info">
+          <span id="currentTime">1:35</span>
+          <span id="totalTime">3:30</span>
+        </div>
+      </div>
+      <div class="control-buttons">
+        <button class="control-btn" id="likeButton">🤍</button>
+        <button class="control-btn" id="prevBtn">⏮</button>
+        <button class="control-btn play-pause" id="playPauseBtn">⏸</button>
+        <button class="control-btn" id="nextBtn">⏭</button>
+        <div class="volume-control">
+          <button class="volume-icon" id="volumeIcon">🔊</button>
+          <div class="volume-slider-container">
+            <input type="range" min="0" max="100" value="80" class="volume-slider" id="volumeSlider">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
